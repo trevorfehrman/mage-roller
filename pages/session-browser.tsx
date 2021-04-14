@@ -1,5 +1,5 @@
 function SessionBrowser() {
-  return <div>Session Browser</div>;
+  return <div>Session Browser</div>
 }
 
-export default SessionBrowser;
+export default SessionBrowser
