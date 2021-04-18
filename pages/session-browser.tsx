@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import 'firebase/functions'
 import 'firebase/firestore'
 import 'firebase/auth'
@@ -41,12 +42,12 @@ function SessionBrowser() {
 
   return (
     <div>
-      <input
+      {/* <input
         value={email}
         onChange={handleChange}
         placeholder="member@example.com"
       />
-      <button onClick={() => sendEmail()}>Send Invitation</button>
+      <button onClick={() => sendEmail()}>Send Invitation</button> */}
       {invitations.data?.map(invitation => (
         <div key={invitation.id}>{invitation.name}</div>
       ))}
@@ -54,8 +55,8 @@ function SessionBrowser() {
   )
 }
 
-SessionBrowser.getInitialProps = async ctx => {
-  return null
+SessionBrowser.getInitialProps = async () => {
+  return {}
 }
 
 export default SessionBrowser
