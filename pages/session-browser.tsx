@@ -4,16 +4,21 @@ import 'firebase/functions'
 import 'firebase/firestore'
 import 'firebase/auth'
 import {
-  useFunctions,
+  // useFunctions,
   useUser,
   useFirestoreCollectionData,
   useFirestore,
 } from 'reactfire'
 
-import { ISession } from '../interfaces-and-types'
+import styled from '@emotion/styled'
+
+import { ISession } from '../interfaces-and-types/session'
+import { SessionButton } from '../components/session-browser/session-button'
+import SessionSummary from 'components/session-browser/session-summary'
 
 function SessionBrowser() {
-  const [email, setEmail] = React.useState<string>('')
+  // const [email, setEmail] = React.useState<string>('')
+  const [selectedSession, setSelectedSession] = React.useState<ISession>()
 
   const user = useUser()
 
@@ -28,32 +33,56 @@ function SessionBrowser() {
     },
   )
 
-  const functions = useFunctions()
-  const callable = functions.httpsCallable('emailInvitation')
-  function sendEmail() {
-    callable({ email })
-      .then(() => console.log('good'))
-      .catch(() => console.log('baaaad'))
-  }
+  // const functions = useFunctions()
+  // const callable = functions.httpsCallable('emailInvitation')
+  // function sendEmail() {
+  //   callable({ email })
+  //     .then(() => console.log('good'))
+  //     .catch(() => console.log('baaaad'))
+  // }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(event.target.value)
-  }
+  // function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setEmail(event.target.value)
+  // }
 
   return (
-    <div>
+    <SessionBrowserStyled>
+      <h3 className="heading">Sessions</h3>
+      <div>
+        {invitations.data?.map(invitation => (
+          <SessionButton
+            key={invitation.id}
+            email={user.data.email}
+            invitation={invitation}
+            setSelectedSession={setSelectedSession}
+          />
+        ))}
+      </div>
+      <div>
+        <SessionSummary session={selectedSession} />
+      </div>
       {/* <input
         value={email}
         onChange={handleChange}
         placeholder="member@example.com"
       />
       <button onClick={() => sendEmail()}>Send Invitation</button> */}
-      {invitations.data?.map(invitation => (
-        <div key={invitation.id}>{invitation.name}</div>
-      ))}
-    </div>
+    </SessionBrowserStyled>
   )
 }
+
+const SessionBrowserStyled = styled('div')({
+  width: 'clamp(40rem, 50%, 84rem)',
+  margin: '7rem auto 0 auto',
+  display: 'grid',
+  gridTemplateColumns: '30rem 1fr',
+  gap: '2rem',
+
+  '& .heading': {
+    gridColumn: 'span 2',
+    fontSize: '3rem',
+  },
+})
 
 SessionBrowser.getInitialProps = async () => {
   return {}

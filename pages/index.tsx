@@ -4,7 +4,7 @@ import 'firebase/auth'
 import { useUser, useAuth } from 'reactfire'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 
-import { LoadingSpinner } from '../components/shared/loading-spinner'
+import { LoadingSpinner } from 'components/shared/loading-spinner'
 
 function SignInForm() {
   const auth = useAuth

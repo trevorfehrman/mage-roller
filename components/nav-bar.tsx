@@ -3,11 +3,9 @@ function NavBar() {
     <nav
       css={{
         backgroundColor: 'var(--mage-green)',
-        height: '20rem',
+        height: '15rem',
         fontSize: '8rem',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'center',
         padding: '2rem',
 

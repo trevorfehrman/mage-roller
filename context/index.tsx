@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { GoogleFonts } from 'next-google-fonts'
 
 import { FirebaseAppProvider } from 'reactfire'
-import NavBar from '../components/nav-bar'
+import NavBar from 'components/nav-bar'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDhEhi-GDSUOy2Mv63GT304O9WD-9cQMoY',
@@ -25,8 +25,14 @@ function AppProviders({ children }) {
           ${emotionReset}
 
           :root {
-            --mage-green: hsl(142, 42%, 21%);
+            --mage-green: hsl(142deg 98% 5%);
+            --mage-green-light: hsl(142deg 15% 26%);
+            --mage-green-highlight: hsl(142deg 100% 25%);
             --mage-white: hsl(0deg 0% 91%);
+            --mage-gray: hsl(0deg 0% 35%);
+            --mage-grey: var(--mage-gray);
+            --mage-gray-dark: hsl(0deg 0% 15%);
+            --mage-grey-dark: var(--mage-gray-light);
             --background: hsl(0deg 0% 17%);
             font-family: 'Raleway', sans-serif;
           }
@@ -43,6 +49,45 @@ function AppProviders({ children }) {
 
           nav {
             font-family: 'Eagle Lake', cursive;
+          }
+
+          h1,
+          h2,
+          h3,
+          h4,
+          h5 {
+            font-family: 'Eagle Lake', cursive;
+          }
+
+          button {
+            display: inline-block;
+            border: none;
+            padding: 1rem 2rem;
+            margin: 0;
+            text-decoration: none;
+            background: var(--mage-grey-dark);
+            color: var(--mage-white);
+            font-family: sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background 250ms ease-in-out, transform 150ms ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+          }
+
+          button:hover,
+          button:focus {
+            background: var(--mage-gray-dark);
+          }
+
+          button:focus {
+            outline: 1px solid var(--mage-white);
+            outline-offset: -4px;
+          }
+
+          button:active {
+            transform: scale(0.99);
           }
 
           *,
