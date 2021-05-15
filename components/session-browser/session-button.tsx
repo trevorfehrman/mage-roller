@@ -1,16 +1,16 @@
 import styled from '@emotion/styled'
 
-import { ISession } from 'interfaces-and-types/session'
+import { ISession } from 'interfaces-and-types/session.interface'
 
 type SessionButtonProps = {
   invitation: ISession & { id: string }
-  email: string
+  userEmail: string
   setSelectedSession: React.Dispatch<React.SetStateAction<ISession>>
 }
 
 function SessionButton({
   invitation,
-  email,
+  userEmail,
   setSelectedSession,
 }: SessionButtonProps) {
   return (
@@ -19,29 +19,30 @@ function SessionButton({
       key={invitation.id}
       onClick={() => setSelectedSession(invitation)}
     >
-      {invitation.sessionAdmin === email ? (
+      {invitation.sessionAdmin === userEmail ? (
         <div
-          style={{
+          css={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '2rem',
+            height: '100%',
+            backgroundColor: 'var(--mage-green-dark)',
+          }}
+        />
+      ) : null}
+      {invitation.name}
+      {invitation.members.some(member => {
+        return member.email === userEmail && !member.invitationAccepted
+      }) && invitation.sessionAdmin !== userEmail ? (
+        <div
+          css={{
             position: 'absolute',
             top: 0,
             left: 0,
             width: '2rem',
             height: '100%',
             backgroundColor: 'var(--mage-green)',
-          }}
-        />
-      ) : null}
-      {invitation.name}
-      {invitation.invitations.some(member => member === email) &&
-      invitation.sessionAdmin !== email ? (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '2rem',
-            height: '100%',
-            backgroundColor: 'var(--mage-green-highlight)',
           }}
         />
       ) : null}
@@ -52,7 +53,7 @@ function SessionButton({
 const SessionButtonStyled = styled('button')({
   fontSize: '2rem',
   textTransform: 'uppercase',
-  backgroundColor: 'var(--mage-gray)',
+  // backgroundColor: 'var(--mage-gray)',
   padding: '1rem',
   cursor: 'pointer',
   transition: 'all .2s ease-out',
@@ -61,17 +62,13 @@ const SessionButtonStyled = styled('button')({
   position: 'relative',
   overflow: 'hidden',
   outline: 'none',
-  '&:not(:last-child)': {
-    marginBottom: '2rem',
-    width: '100%',
-  },
 
   '&:active, &:hover, &:focus': {
     outline: 'none',
   },
 
   '&:hover': {
-    backgroundColor: 'var(--mage-green-light)',
+    // backgroundColor: 'var(--mage-green-light)',
     borderBottomRightRadius: '1.5rem',
     borderTopLeftRadius: '1.5rem',
   },

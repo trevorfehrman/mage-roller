@@ -2,7 +2,8 @@ function NavBar() {
   return (
     <nav
       css={{
-        backgroundColor: 'var(--mage-green)',
+        // backgroundColor: 'var(--mage-green)',
+        background: 'var(--nav-gradient)',
         height: '15rem',
         fontSize: '8rem',
         display: 'flex',

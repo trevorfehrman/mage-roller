@@ -12,7 +12,7 @@ import {
 
 import styled from '@emotion/styled'
 
-import { ISession } from '../interfaces-and-types/session'
+import { ISession } from '../interfaces-and-types/session.interface'
 import { SessionButton } from '../components/session-browser/session-button'
 import SessionSummary from 'components/session-browser/session-summary'
 
@@ -52,14 +52,19 @@ function SessionBrowser() {
         {invitations.data?.map(invitation => (
           <SessionButton
             key={invitation.id}
-            email={user.data.email}
+            userEmail={user.data.email}
             invitation={invitation}
             setSelectedSession={setSelectedSession}
           />
         ))}
       </div>
       <div>
-        <SessionSummary session={selectedSession} />
+        {selectedSession && (
+          <SessionSummary
+            session={selectedSession}
+            userEmail={user.data.email}
+          />
+        )}
       </div>
       {/* <input
         value={email}

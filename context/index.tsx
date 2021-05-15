@@ -25,15 +25,28 @@ function AppProviders({ children }) {
           ${emotionReset}
 
           :root {
-            --mage-green: hsl(142deg 98% 5%);
-            --mage-green-light: hsl(142deg 15% 26%);
-            --mage-green-highlight: hsl(142deg 100% 25%);
+            --mage-green: hsl(142deg 32% 32%);
+            --mage-green-dark: hsl(142deg 35% 16%);
+            --mage-green-light: hsl(142deg 15% 55%);
             --mage-white: hsl(0deg 0% 91%);
-            --mage-gray: hsl(0deg 0% 35%);
+            --mage-gray: hsl(0deg 0% 25%);
             --mage-grey: var(--mage-gray);
-            --mage-gray-dark: hsl(0deg 0% 15%);
-            --mage-grey-dark: var(--mage-gray-light);
+            --mage-gray-dark: hsl(0deg 0% 13%);
+            --mage-grey-dark: var(--mage-gray-dark);
+            --mage-gray-light: hsl(0 0% 35%);
+            --mage-grey-light: var(--mage-gray-light);
             --background: hsl(0deg 0% 17%);
+            --nav-gradient: linear-gradient(
+              90deg,
+              #356948,
+              #497d5b,
+              #5d916e,
+              #72a682,
+              #87bc97,
+              #9dd2ac,
+              #b3e8c2,
+              #c9ffd8
+            );
             font-family: 'Raleway', sans-serif;
           }
 
@@ -61,11 +74,11 @@ function AppProviders({ children }) {
 
           button {
             display: inline-block;
-            border: none;
+            border: 1px solid var(--background);
             padding: 1rem 2rem;
             margin: 0;
             text-decoration: none;
-            background: var(--mage-grey-dark);
+            background: var(--mage-gray);
             color: var(--mage-white);
             font-family: sans-serif;
             font-size: 1rem;
@@ -76,14 +89,13 @@ function AppProviders({ children }) {
             -moz-appearance: none;
           }
 
-          button:hover,
-          button:focus {
-            background: var(--mage-gray-dark);
+          button:hover {
+            background: var(--mage-green-light);
           }
 
           button:focus {
-            outline: 1px solid var(--mage-white);
-            outline-offset: -4px;
+            background: var(--mage-gray-light);
+            border: 1px solid var(--mage-green);
           }
 
           button:active {
